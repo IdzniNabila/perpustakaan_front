@@ -11,8 +11,13 @@ try {
     jwt = localStorage.getItem('jwt');
 }
 
+const apiBaseURL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+
+// Ekstrak root domain backend (menghapus subpath '/api' di akhir) untuk memuat asset gambar
+export const BACKEND_URL = apiBaseURL.replace(/\/api\/?$/, '');
+
 const api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/api',
+    baseURL: apiBaseURL,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { BACKEND_URL } from '../../../../utils/api'
 
 export default function BookList({ books, deleteBook, isAdmin }) {
 	const gradients = [
@@ -26,7 +27,7 @@ export default function BookList({ books, deleteBook, isAdmin }) {
 							{book.image ? (
 								<div className="book-cover-image-container">
 									<img 
-										src={`http://localhost:8000${book.image}`} 
+										src={`${BACKEND_URL}${book.image}`} 
 										alt={book.name} 
 										className="book-cover-image"
 									/>
