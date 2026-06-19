@@ -9,7 +9,7 @@
   --warning: #ffb300;
   --danger: #ef5350;
   --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-  --auth-gradient: linear-gradient(135deg, #3f51b5 0%, #ab47bc 100%);
+  --auth-gradient: linear-gradient(135deg, #1e1b4b 0%, #3b0764 50%, #4c1d95 100%);
   --text-main: #2c3e50;
   --text-muted: #7f8c8d;
   --card-bg: rgba(255, 255, 255, 0.9);
@@ -238,19 +238,33 @@ body {
 }
 
 .auth-card-left {
-  padding: 40px;
+  padding: 45px 50px;
   background: #ffffff;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
   min-height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+}
+
+.auth-card-left form {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: left; /* Keep the inputs/labels left-aligned within the centered form column for readability */
+}
+
+.auth-card-left .alert {
+  max-width: 360px;
+  margin: 0 auto 15px auto;
+  text-align: center;
 }
 
 .auth-card-right {
-  background: linear-gradient(135deg, rgba(92, 107, 192, 0.9) 0%, rgba(171, 71, 188, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(76, 29, 149, 0.95) 0%, rgba(92, 107, 192, 0.95) 100%);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
@@ -261,7 +275,7 @@ body {
   align-items: center;
   text-align: center;
   min-height: 520px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
 }
 
 .auth-illustration {
