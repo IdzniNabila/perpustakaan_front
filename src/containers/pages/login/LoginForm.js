@@ -28,8 +28,8 @@ const LoginForm = ({ login }) => {
 						history.push('/dashboard')
 					})
 					.catch((err) => {
-						// actions.setFieldError("general", "Email atau Password Salah")
-						actions.setStatus("Email atau Password Salah")
+						const msg = err.response?.data?.message || err.response?.data?.error || err.message || "Email atau Password Salah";
+						actions.setStatus(msg);
 					})
 			}}
 		>

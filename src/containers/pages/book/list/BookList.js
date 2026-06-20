@@ -59,7 +59,7 @@ export default function BookList({ books, deleteBook, isAdmin }) {
 								</div>
 								
 								{/* Actions */}
-								{isAdmin && (
+								{isAdmin ? (
 									<div className="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
 										<Link to={`/book/${book.id}/edit`} className="btn btn-sm btn-outline-primary" style={{ borderRadius: '6px' }}>
 											Edit
@@ -70,6 +70,24 @@ export default function BookList({ books, deleteBook, isAdmin }) {
 											style={{ borderRadius: '6px' }}
 										>
 											Hapus
+										</button>
+									</div>
+								) : (
+									<div className="d-flex justify-content-end align-items-center mt-3 pt-2 border-top">
+										<button 
+											onClick={async () => {
+												try {
+													const api = require('../../../../utils/api').default;
+													await api.post('/rak-buku', { book_id: book.id });
+													alert('Buku berhasil ditambahkan ke rak!');
+												} catch (err) {
+													alert('Gagal menambahkan ke rak. Mungkin sudah ada di rak Anda.');
+												}
+											}} 
+											className="btn btn-sm btn-primary" 
+											style={{ borderRadius: '6px', fontSize: '12px' }}
+										>
+											+ Tambahkan ke Rak
 										</button>
 									</div>
 								)}

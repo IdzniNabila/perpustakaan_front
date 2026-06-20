@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTable, useGlobalFilter, usePagination, useFilters, useSortBy  } from 'react-table'
 // import matchSorter from 'match-sorter'
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp, faAngleDoubleLeft, faAngleLeft, faAngleRight, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './Table.css';
 
@@ -169,9 +169,10 @@ export default function Table ({ columns, data })  {
 	        Pagination can be built however you'd like. 
 	        This is just a very basic UI implementation:
 	      */}
-	      <div className="float-right mb-3">
+	      <div className="d-flex justify-content-end align-items-center mb-4 mt-3">
 	        <select
-	          style={{ padding: '7px', borderRadius: '3px', border: '1px solid #007bff' }}
+	          className="custom-select custom-select-sm mr-3"
+	          style={{ width: 'auto', borderRadius: '8px', cursor: 'pointer', borderColor: '#EAE6DE' }}
 	          value={pageSize}
 	          onChange={e => {
 	            setPageSize(Number(e.target.value))
@@ -179,28 +180,54 @@ export default function Table ({ columns, data })  {
 	        >
 	          {[10, 20, 30, 40, 50].map(pageSize => (
 	            <option key={pageSize} value={pageSize}>
-	              Show {pageSize}
+	              Tampilkan {pageSize} baris
 	            </option>
 	          ))}
-	        </select>{' '}
-	        <button className="btn btn-outline-primary" style={{ marginTop: '-4px' }} onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-	          {'<<'}
-	        </button>{' '}
-	        <button className="btn btn-outline-primary" style={{ marginTop: '-4px' }} onClick={() => previousPage()} disabled={!canPreviousPage}>
-	          {'<'}
-	        </button>{' '}
-	        <span>
-	          Page{' '}
-	          <strong>
-	            {pageIndex + 1} of {pageOptions.length}
-	          </strong>{' '}
-	        </span>
-	        <button className="btn btn-outline-primary" style={{ marginTop: '-4px' }} onClick={() => nextPage()} disabled={!canNextPage}>
-	          {'>'}
-	        </button>{' '}
-	        <button className="btn btn-outline-primary" style={{ marginTop: '-4px' }} onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-	          {'>>'}
-	        </button>
+	        </select>
+			
+			<div className="pagination-container d-flex align-items-center bg-white shadow-sm p-1" style={{ borderRadius: '12px', border: '1px solid #EAE6DE' }}>
+				<button 
+					className={`btn btn-sm ${canPreviousPage ? 'btn-light' : 'btn-white text-muted'} border-0`} 
+					style={{ borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s ease' }} 
+					onClick={() => gotoPage(0)} 
+					disabled={!canPreviousPage}
+					title="First Page"
+				>
+					<FontAwesomeIcon icon={faAngleDoubleLeft} />
+				</button>
+				<button 
+					className={`btn btn-sm ${canPreviousPage ? 'btn-light' : 'btn-white text-muted'} border-0 mx-1`} 
+					style={{ borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s ease' }} 
+					onClick={() => previousPage()} 
+					disabled={!canPreviousPage}
+					title="Previous Page"
+				>
+					<FontAwesomeIcon icon={faAngleLeft} />
+				</button>
+				
+				<span className="mx-3 font-weight-bold" style={{ fontSize: '14px', color: 'var(--text-main)' }}>
+					Halaman <span className="text-primary">{pageIndex + 1}</span> dari {pageOptions.length}
+				</span>
+				
+				<button 
+					className={`btn btn-sm ${canNextPage ? 'btn-light' : 'btn-white text-muted'} border-0 mx-1`} 
+					style={{ borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s ease' }} 
+					onClick={() => nextPage()} 
+					disabled={!canNextPage}
+					title="Next Page"
+				>
+					<FontAwesomeIcon icon={faAngleRight} />
+				</button>
+				<button 
+					className={`btn btn-sm ${canNextPage ? 'btn-light' : 'btn-white text-muted'} border-0`} 
+					style={{ borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s ease' }} 
+					onClick={() => gotoPage(pageCount - 1)} 
+					disabled={!canNextPage}
+					title="Last Page"
+				>
+					<FontAwesomeIcon icon={faAngleDoubleRight} />
+				</button>
+			</div>
 	      </div>
 	    </>
 	)
