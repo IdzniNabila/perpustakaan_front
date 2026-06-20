@@ -38,10 +38,13 @@ class App extends Component {
 					<LayoutRoute path="/user/create" layout={DashboardLayout} component={privateAuth(UserFormPage)} />
 					<LayoutRoute path="/user/:id/edit" layout={DashboardLayout} component={privateAuth(UserFormPage)} />
 
-					{/* User */}
+					{/* Peminjaman */}
 					<LayoutRoute exact path="/peminjaman" layout={DashboardLayout} component={privateAuth(PeminjamanListPage)} />
 					<LayoutRoute path="/peminjaman/create" layout={DashboardLayout} component={privateAuth(PeminjamanFormPage)} />
 					<LayoutRoute path="/peminjaman/:id/edit" layout={DashboardLayout} component={privateAuth(PeminjamanFormPage)} />
+
+					{/* Rak Buku */}
+					<LayoutRoute exact path="/rak-buku" layout={DashboardLayout} component={privateAuth(require('./containers/pages/RakBuku').default)} />
 
 					{/*Not Found*/}
 					<Route component={NotFound} />					
